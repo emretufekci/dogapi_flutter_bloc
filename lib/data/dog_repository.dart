@@ -6,7 +6,19 @@ class DogRepository {
     final response = await http.get(Uri.parse('https://dog.ceo/api/breeds/list/all'));
     if (response.statusCode == 200) {
       final dog = dogFromJson(response.body);
-      return dog.message.entries.map((e) => Dog(message: {}, status: '')).toList();
+
+      // Here, map each entry in the dog.message map to a Dog object
+      final dogList = dog.message.entries.map((entry) {
+        final breed = entry.key;
+        final subBreeds = entry.value;
+        return Dog(message: {breed: subBreeds}, status: '');
+      }).toList();
+
+      //Print
+       dogList.forEach((element) {
+         //print(element.message);
+       });
+      return dogList;
     } else {
       throw Exception('Failed to load dogs');
     }

@@ -36,7 +36,7 @@ class DogBloc extends Bloc<DogEvent, DogState> {
       emit(DogLoading());
         try {
           final dog = await DogRepository().getDogList();
-          final filteredDog = dog.where((element) => element.breed.toLowerCase().contains(event.query.toLowerCase())).toList();
+          final filteredDog = dog.where((element) => element.message.containsKey(event.query)).toList();
           emit(DogLoaded(dogs: filteredDog));
         } catch (e) {
           emit(DogError(message: e.toString()));

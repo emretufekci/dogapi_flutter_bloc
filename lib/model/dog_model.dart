@@ -22,7 +22,6 @@ class Dog {
     status: json["status"]
   );
 
-  get breed => null;
 
   Map<String, dynamic> toJson() => {
     "message": Map.from(message).map((k, v) => MapEntry<String, dynamic>(k, List<dynamic>.from(v.map((x) => x)))),
