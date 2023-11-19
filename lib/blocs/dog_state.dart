@@ -21,3 +21,12 @@ class DogLoaded extends DogState {
   @override
   List<Object> get props => [dogs];
 }
+
+class DogError extends DogState {
+  final String message;
+
+  const DogError({required this.message});
+
+  @override
+  List<Object> get props => [message];
+}
