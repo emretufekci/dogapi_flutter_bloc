@@ -1,3 +1,4 @@
+import 'package:dogapi_flutter_bloc/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -16,12 +17,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
       return MultiBlocProvider(
           providers: [
-            BlocProvider(create: (context) => DogBloc()..add(DogListRequested(dog: Dog(message: {}, status: '')))
+            BlocProvider(create: (context) => DogBloc()..add(DogListRequested(dog: Dog(message: {}, status: '', image: '')))
             ),
           ],
           child: const MaterialApp(
             title: 'AppName',
-            home: MyHomePage(title: 'AppName'),
+            home: HomePage(),
           )
       );
   }

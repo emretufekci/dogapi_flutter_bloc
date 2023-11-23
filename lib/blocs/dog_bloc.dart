@@ -25,7 +25,7 @@ class DogBloc extends Bloc<DogEvent, DogState> {
       emit(DogLoading());
         try {
           final dog = await DogRepository().getDogImages(event.breed, event.subBreed);
-          emit(DogLoaded(dogs: [Dog(message: dog, status: '')]));
+          emit(DogLoaded(dogs: [Dog(message: dog, status: '', image: '')]));
         } catch (e) {
           emit(DogError(message: e.toString()));
         }
