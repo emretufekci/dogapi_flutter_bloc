@@ -51,13 +51,22 @@ class DogContainerWidget extends StatelessWidget {
                   fit: BoxFit.cover,
                   width: double.infinity,
                   height: double.infinity,
-                  errorWidget: (context, msg, object) => const Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.error_outline_outlined),
-                        Text("No image available"),
-                      ],
+                  errorWidget: (context, msg, object) => Container(
+                    decoration: BoxDecoration(
+                      border: Border.all(
+                        color: Colors.black, // Specify the border color
+                        width: 0.5, // Specify the border width
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(8.0)), // Optional: Specify border radius
+                    ),
+                    child: const Center(
+                      child: Column(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Icon(Icons.error_outline_outlined),
+                          Text("No image available"),
+                        ],
+                      ),
                     ),
                   ),
                 ),

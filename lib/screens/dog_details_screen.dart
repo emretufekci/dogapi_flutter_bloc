@@ -15,41 +15,59 @@ class DogDetailsScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-        padding: const EdgeInsets.fromLTRB(8, 90, 8, 90), // Adjust padding as needed
-      child:  AlertDialog(
-        contentPadding: const EdgeInsets.all(0.0), // Adjust padding as needed
-        content: Container(
-          color: Colors.white, // Set the background color to white
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              SizedBox(
-                height: 400,
-                width: 400, // Set your desired width
-                child: CachedNetworkImage(
-                  imageUrl: imageUrl,
-                  fit: BoxFit.cover,
-                  errorWidget: (context, msg, object) => const Center(
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(Icons.error_outline_outlined),
-                        Text("No image available"),
-                      ],
+      padding: const EdgeInsets.fromLTRB(8, 90, 8, 90),
+      child: AlertDialog(
+        contentPadding: const EdgeInsets.all(0.0),
+        content: Stack(
+          alignment: Alignment.topRight,
+          children: [
+            Container(
+              color: Colors.white,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  SizedBox(
+                    height: 400,
+                    width: 400,
+                    child: CachedNetworkImage(
+                      imageUrl: imageUrl,
+                      fit: BoxFit.cover,
+                      errorWidget: (context, msg, object) => const Center(
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          children: [
+                            Icon(Icons.error_outline_outlined),
+                            Text("No image available"),
+                          ],
+                        ),
+                      ),
                     ),
                   ),
+                  _buildTitleAndText('Breed', breed),
+                  _buildTitleAndText('Sub Breed', subBreeds.join('\n')),
+                  ElevatedButton(
+                    onPressed: () {
+                      print('Generate');
+                    },
+                    child: const Text('Generate'),
+                  ),
+                ],
+              ),
+            ),
+            Positioned(
+              top: 8,
+              right: 8,
+              child: CircleAvatar(
+                backgroundColor: Colors.white,
+                child: IconButton(
+                  icon: Icon(Icons.close),
+                  onPressed: () {
+                    Navigator.of(context).pop(); // Close the AlertDialog
+                  },
                 ),
               ),
-              _buildTitleAndText('Breed', breed),
-              _buildTitleAndText('Sub Breed', subBreeds.join('\n')),
-              ElevatedButton(
-                onPressed: () {
-                  print('Generate');
-                },
-                child: const Text('Generate'),
-              ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );
@@ -59,7 +77,7 @@ class DogDetailsScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.center,
       children: [
-        const SizedBox(height: 8), // Added to create space between button and title
+        const SizedBox(height: 8),
         Text(
           title,
           style: const TextStyle(
@@ -67,7 +85,7 @@ class DogDetailsScreen extends StatelessWidget {
             color: Colors.blue,
           ),
         ),
-        const SizedBox(height: 4), // Added to create space between title and text
+        const SizedBox(height: 4),
         const Divider(
           height: 2,
           thickness: 0.5,
@@ -79,7 +97,7 @@ class DogDetailsScreen extends StatelessWidget {
             color: Colors.black,
           ),
         ),
-        const SizedBox(height: 8), // Added to create space between text and button
+        const SizedBox(height: 8),
       ],
     );
   }
