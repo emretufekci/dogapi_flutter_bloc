@@ -27,28 +27,29 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(
             height: 48,
           ),
-          buildSettingsItem("Icons.help", 'Help'),
+          buildSettingsItem(Icons.help, 'Help'),
           const CustomDivider(),
-          buildSettingsItem(".rate", 'Rate Us'),
+          buildSettingsItem(Icons.rate_review, 'Rate Us'),
           const CustomDivider(),
-          buildSettingsItem(".share", 'Share With Friends'),
+          buildSettingsItem(Icons.share, 'Share With Friends'),
           const CustomDivider(),
-          buildSettingsItem("tos", 'Terms Of Use'),
+          buildSettingsItem(Icons.document_scanner, 'Terms Of Use'),
           const CustomDivider(),
-          buildSettingsItem("pp", 'Privacy Policy'),
+          buildSettingsItem(Icons.account_box_outlined, 'Privacy Policy'),
           const CustomDivider(),
           buildSettingsItemVersion("AssetsImages", 'OS Version'),
         ],
       ),
-      bottomNavigationBar: const DogBottomSheet(imageUrl: 'dog.imageUrl', selectedIndex: 1),
+      bottomNavigationBar: const DogBottomSheet(selectedIndex: 1),
       );
   }
 
-  Widget buildSettingsItem(String icon, String title) {
+  Widget buildSettingsItem(IconData icon, String title) {
     return ListTile(
-      leading: Image.asset(
-        'assets/images/mami.jpg',
-        height: 32,
+      leading: Icon(
+        icon,
+        size: 32,
+        color: Colors.amber,
       ),
       title: Text(
         title,

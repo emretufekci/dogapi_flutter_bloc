@@ -48,8 +48,7 @@ class HomePage extends StatelessWidget {
                 ],
               ),
             ),
-            bottomNavigationBar: const DogBottomSheet(
-                imageUrl: '', selectedIndex: 0),
+            bottomNavigationBar: const DogBottomSheet(selectedIndex: 1),
           );
         }
         return const Scaffold(
