@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
             ),
           ],
           child: const MaterialApp(
-            title: 'AppName',
+            title: 'This is awesome',
             home: HomePage(),
           )
       );
