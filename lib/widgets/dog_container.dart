@@ -125,8 +125,9 @@ class DogContainerWidget extends StatelessWidget {
                   color: imageUrl.isNotEmpty
                       ? Colors.black.withOpacity(0.5)
                       : null,
-                  borderRadius: BorderRadius.only(
+                  borderRadius: const BorderRadius.only(
                     topRight: Radius.circular(16),
+                    bottomLeft: Radius.circular(16),
                   ),
                 ),
                 child: Text(

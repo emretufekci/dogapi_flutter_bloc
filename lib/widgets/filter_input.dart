@@ -26,7 +26,7 @@ class _FilterInputState extends State<FilterInput> {
               _showSearchModal(context);
             },
             child: Container(
-              width: 343,
+              width: MediaQuery.of(context).size.width - 48,
               height: 64,
               decoration: BoxDecoration(
                 color: Colors.white,
