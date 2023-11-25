@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:dogapi_flutter_bloc/widgets/bottom_sheet.dart';
 import 'package:flutter/material.dart';
 
@@ -18,7 +20,7 @@ class SettingsScreen extends StatelessWidget {
             width: 32,
             height: 4,
             decoration: ShapeDecoration(
-              color: Colors.amber,
+              color: Colors.black,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(2),
               ),
@@ -27,15 +29,15 @@ class SettingsScreen extends StatelessWidget {
           const SizedBox(
             height: 48,
           ),
-          buildSettingsItem(Icons.help, 'Help'),
+          buildSettingsItem(Icons.info_outline, 'Help'),
           const CustomDivider(),
-          buildSettingsItem(Icons.rate_review, 'Rate Us'),
+          buildSettingsItem(Icons.star_border, 'Rate Us'),
           const CustomDivider(),
-          buildSettingsItem(Icons.share, 'Share With Friends'),
+          buildSettingsItem(Icons.ios_share_outlined, 'Share With Friends'),
           const CustomDivider(),
-          buildSettingsItem(Icons.document_scanner, 'Terms Of Use'),
+          buildSettingsItem(Icons.receipt_long_outlined, 'Terms Of Use'),
           const CustomDivider(),
-          buildSettingsItem(Icons.account_box_outlined, 'Privacy Policy'),
+          buildSettingsItem(Icons.privacy_tip_outlined, 'Privacy Policy'),
           const CustomDivider(),
           buildSettingsItemVersion("AssetsImages", 'OS Version'),
         ],
@@ -49,37 +51,31 @@ class SettingsScreen extends StatelessWidget {
       leading: Icon(
         icon,
         size: 32,
-        color: Colors.amber,
+        color: Colors.black,
       ),
       title: Text(
         title,
       ),
       trailing: const Icon(
-        Icons.arrow_forward_ios,
+        Icons.turn_slight_right_outlined,
         size: 16,
-        color: Colors.amber,
+        color: Colors.black12,
       ),
     );
   }
 
   Widget buildSettingsItemVersion(String icon, String title) {
     return ListTile(
-      leading: Image.asset(
-        'assets/images/mami.jpg',
-        height: 32,
+      leading: const Icon(
+        Icons.share_outlined,
+        size: 32,
+        color: Colors.black,
       ),
       title: Text(
         title,
       ),
-      trailing: FutureBuilder(
-        builder: (context, snapshot) {
-          if (snapshot.data == null) {
-            return const Text("");
-          }
-          return Text(
-            "v${snapshot.data!}"
-          );
-        }, future: null,
+      trailing: Text(
+          Platform.operatingSystemVersion.split(' ')[1],
       ),
     );
   }
