@@ -6,7 +6,6 @@ import '../widgets/bottom_sheet.dart';
 import '../widgets/dog_container.dart';
 import '../widgets/filter_input.dart';
 import '../screens/splash_screen.dart';
-import 'dog_details_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -40,7 +39,7 @@ class HomePage extends StatelessWidget {
                     child: _buildDogGrid(dogs, context),
                   ),
                   Positioned(
-                    bottom: 44,
+                    bottom: 32,
                     left: 0,
                     right: 0,
                     child: FilterInput(dogs: dogs),
@@ -69,9 +68,6 @@ class HomePage extends StatelessWidget {
       crossAxisCount: 2,
       children: dogs.map((dog) {
         return GestureDetector(
-          onTap: () {
-            _showDogDetails(context, dog);
-          },
           child: DogContainerWidget(
             name: dog.message.keys.first.toString(),
             imageUrl: dog.image,
@@ -82,17 +78,3 @@ class HomePage extends StatelessWidget {
       }).toList(),
     );
   }
-
-  void _showDogDetails(BuildContext context, Dog dog) {
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => DogDetailsScreen(
-          breed: dog.message.keys.first.toString(),
-          subBreeds: dog.message.values.first.cast<String>().toList(),
-          imageUrl: dog.image,
-        ),
-      ),
-    );
-  }
-

@@ -3,6 +3,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../screens/dog_details_screen.dart';
+
 class DogContainerWidget extends StatelessWidget {
   const DogContainerWidget({
     Key? key,
@@ -31,66 +33,10 @@ class DogContainerWidget extends StatelessWidget {
           showCupertinoModalPopup(
             context: context,
             builder: (BuildContext context) {
-              if (kDebugMode) {
-                print('name: $name');
-              }
-              return CupertinoActionSheet(
-                title: Text(name),
-                message: Column(
-                  mainAxisAlignment: MainAxisAlignment.center, // Center the contents vertically
-                  crossAxisAlignment: CrossAxisAlignment.center, // Center the contents horizontally
-                  children: [
-                    CachedNetworkImage(
-                      imageUrl: imageUrl,
-                      fit: BoxFit.cover,
-                      width: double.infinity,
-                      height: 200, // Adjust the height as needed
-                      errorWidget: (context, msg, object) => const Center(
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            Icon(Icons.error_outline_outlined),
-                            Text("No image available"),
-                          ],
-                        ),
-                      ),
-                    ),
-                    const SizedBox(height: 10), // Add some space between the image and breed information
-                    const Text(
-                      'Breed',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      breed,
-                      style: const TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.bold),
-                    ),
-                    const SizedBox(height: 10), // Add some space between breed and sub-breed information
-                    const Text(
-                      'SubBreed',
-                      style: TextStyle(fontWeight: FontWeight.bold),
-                    ),
-                    Text(
-                      subBreed.join(', '),
-                      style: const TextStyle(
-                          fontSize: 16.0, fontWeight: FontWeight.bold),
-                    ),
-                  ],
-                ),
-                actions: [
-                  CupertinoActionSheetAction(
-                    onPressed: () {
-                      //Generate a new image
-                    },
-                    child: const Text('Generate'),
-                  ),
-                  CupertinoActionSheetAction(
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                    child: const Text('Close'),
-                  ),
-                ],
+              return DogDetailsScreen(
+                breed: breed,
+                subBreeds: subBreed,
+                imageUrl: imageUrl,
               );
             },
           );
