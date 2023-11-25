@@ -6,7 +6,7 @@ import '../widgets/bottom_sheet.dart';
 import '../widgets/dog_container.dart';
 import '../widgets/filter_input.dart';
 import '../screens/splash_screen.dart';
-import 'dog_details_screen.dart'; // Assuming SplashScreen is in a 'screens' folder
+import 'dog_details_screen.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -40,7 +40,7 @@ class HomePage extends StatelessWidget {
                     child: _buildDogGrid(dogs, context),
                   ),
                   Positioned(
-                    bottom: 25,
+                    bottom: 44,
                     left: 0,
                     right: 0,
                     child: FilterInput(dogs: dogs),

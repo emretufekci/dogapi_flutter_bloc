@@ -20,11 +20,11 @@ class DogContainerWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 150.0, // Set a fixed height for the container
+      height: 150.0,
       padding: const EdgeInsets.all(8.0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(16),
-        color: Colors.grey[200], // Add your desired background color
+        color: imageUrl.isNotEmpty ? null : Colors.grey[200],
       ),
       child: GestureDetector(
         onTap: () {
@@ -80,8 +80,7 @@ class DogContainerWidget extends StatelessWidget {
                 actions: [
                   CupertinoActionSheetAction(
                     onPressed: () {
-                      // Add your code for the "Generate" button action here
-                      // This is where you handle the generation logic
+                      //Generate a new image
                     },
                     child: const Text('Generate'),
                   ),
@@ -96,29 +95,49 @@ class DogContainerWidget extends StatelessWidget {
             },
           );
         },
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.center,
+        child: Stack(
           children: [
-            CachedNetworkImage(
-              imageUrl: imageUrl,
-              fit: BoxFit.cover, // Adjust the fit to cover the fixed container size
-              width: double.infinity, // Take up the entire width of the container
-              height: 144, // Set a fixed height for the image
-              errorWidget: (context, msg, object) => const Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Icon(Icons.error_outline_outlined),
-                    Text("No image available"),
-                  ],
+            if (imageUrl.isNotEmpty)
+              ClipRRect(
+                borderRadius: BorderRadius.circular(16),
+                child: CachedNetworkImage(
+                  imageUrl: imageUrl,
+                  fit: BoxFit.cover,
+                  width: double.infinity,
+                  height: double.infinity,
+                  errorWidget: (context, msg, object) => const Center(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Icon(Icons.error_outline_outlined),
+                        Text("No image available"),
+                      ],
+                    ),
+                  ),
                 ),
               ),
-            ),
-            const SizedBox(height: 8.0),
-            Text(
-              name,
-              style: const TextStyle(
-                  fontSize: 16.0, fontWeight: FontWeight.bold),
+            Positioned(
+              bottom: 0,
+              left: 0,
+              child: Container(
+                padding: const EdgeInsets.all(8.0),
+                decoration: BoxDecoration(
+                  color: imageUrl.isNotEmpty
+                      ? Colors.black.withOpacity(0.5)
+                      : null,
+                  borderRadius: BorderRadius.only(
+                    topRight: Radius.circular(16),
+                  ),
+                ),
+                child: Text(
+                  name,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontSize: 16.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
             ),
           ],
         ),
